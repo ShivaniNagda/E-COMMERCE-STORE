@@ -36,7 +36,7 @@ app.use("/api/analytics",analyticsRoutes);
 if(process.env.NODE_ENV === "production"){
     app.use(express.static(path.join(_dirname,"/frontend/dist")));
     
-    app.get("*",(req,res)=>{
+    app.get(/(.*)/,(req,res)=>{
         console.log("Unhandled route:", req.url); 
         res.sendFile(path.resolve(_dirname,"frontend","dist","index.html"));
     })
