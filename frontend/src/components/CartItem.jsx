@@ -5,7 +5,7 @@ import useCartStore from '../stores/useCartStore';
 const CartItem = ({item}) => {
     const {removeFromCart , updateQuantity} = useCartStore();
   return (
-    <div className='rounded-lg boder p-4 shadow-sm border-gray-700 bg-gray-800 md:p-6'>
+    <div className='rounded-lg border p-4 shadow-sm border-gray-700 bg-gray-800 md:p-6'>
         <div className='space-y-4 flex items-center justify-between gap-6 overflow-hidden md:flex md:items-center md:justify-between md:gap-6 xs:gap-3 md:space-y-0'>
             <div className='shrink-0 md:order-1'>
                 <img className='h-20 w-40 md:h-32 rounded object-cover' src={item.image} />
@@ -23,7 +23,7 @@ const CartItem = ({item}) => {
                     </button>
                 </div>
                 <div className='text-end md:order-4 md:w-32'>
-                    <p className='text-base font-bold text-emerald-400'>${item.price}</p>
+                    <p className='text-base font-bold text-emerald-400'>`${item.price}`</p>
                 </div>
            
             <div className='w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md'>
