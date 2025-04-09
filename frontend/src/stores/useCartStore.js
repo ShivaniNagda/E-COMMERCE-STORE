@@ -71,7 +71,9 @@ const useCartStore = create((set,get) =>({
     },
     removeFromCart : async(productId) => {
         try{
-        const res = await axiosInstance.delete("/cart", {productId:productId});
+    
+        const res = await axiosInstance.delete(`/cart/${productId}`);
+        console.log("call RemoveFrom Cart",res.data);
         set(prevState => ({cart:prevState.cart.filter(item => item._id !== productId)}));
         get().calculateTotals();
         }catch(error){
@@ -87,11 +89,13 @@ const useCartStore = create((set,get) =>({
         }
       
     const data = await axiosInstance.put(`/cart/${productId}`,{quantity});
+    console.log("Update quantity");
         set((prevState) =>({
             cart:prevState.cart.map(item => item._id === productId ? {...item,quantity} :
                 item)
         }));
         get().calculateTotals();
+    
     }catch(error){
         console.log(error.message);
         toast.error("Something went Wrong");

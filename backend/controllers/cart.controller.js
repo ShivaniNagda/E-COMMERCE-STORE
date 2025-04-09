@@ -37,18 +37,20 @@ export const addToCart = async(req,res)=>{
 }
 }
 
-export const  removeAllFromCart = async(req,res)=>{
+export const removeAllFromCart = async(req,res)=>{
     try{
-        console.log("removeAllFromCart in controller",req.body);
-      const productId = req.body;
+        console.log("removeAllFromCart in controller",req.body,req.params.id);
+      const productId = req.params.id;
       const user = req.user;
   
       if(!productId){
          user.cartItems=[];
       }else{
           user.cartItems=user.cartItems.filter((item)=>item.id !==productId);
+          console.log("RemoveInCart","else",user);
       }
       await user.save();
+      console.log("RemoveInCart",user);
       res.json({cartItems:user.cartItems,message:"Item removed to cart"});
   }catch(error){
       console.error("Error adding item to cart in controller" ,error);

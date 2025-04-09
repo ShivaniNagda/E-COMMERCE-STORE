@@ -54,6 +54,7 @@ const useProductStore = create((set) => ({
                 products:prevState.products.filter((product)=>product._id !== productId),
                 loading:false
                 }));
+                toast.success("Product delete Successfully")
                 }catch(error){
                     console.log(error);
                     toast.error(error.response.data.error || "Failed to delete product");
